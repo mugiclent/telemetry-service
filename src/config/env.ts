@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const schema = Joi.object({
   NODE_ENV: Joi.string().valid('development', 'test', 'production').required(),
-  PORT: Joi.number().default(8080),
+  PORT: Joi.number().default(8093),
 
   REDIS_PASSWORD: Joi.string().required(),
   REDIS_HOST: Joi.string().default('redis'),

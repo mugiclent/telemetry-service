@@ -20,11 +20,11 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
 
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=8093
 
-EXPOSE 8080
+EXPOSE 8093
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8080/health', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
+  CMD node -e "require('http').get('http://localhost:8093/health', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
 CMD ["node", "dist/index.js"]

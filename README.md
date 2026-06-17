@@ -12,7 +12,7 @@ over SSE. **Redis-backed, no database** — only the latest fix per bus is kept.
 bus device (Traccar client)
     │  POST /  (coords as JSON or OsmAnd query string)
     ▼
-nginx  telemetry.katisha.online ──► telemetry-svc:8080   (direct, NO api-gw, unauthenticated)
+nginx  telemetry.katisha.online ──► telemetry-svc:8093   (direct, NO api-gw, unauthenticated)
     │
     ├── Redis  telemetry:bus:{busId}:latest   (latest fix, TTL'd)
     └── Redis pub/sub  telemetry:bus:{busId}  ──► SSE streams ──► map viewers
