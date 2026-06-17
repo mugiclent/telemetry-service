@@ -1,0 +1,19 @@
+services:
+  telemetry-svc:
+    image: ${DOCKER_USERNAME}/telemetry-svc:${IMAGE_TAG:-latest}
+    container_name: telemetry-svc
+    restart: unless-stopped
+    environment:
+      NODE_ENV:           ${NODE_ENV}
+      PORT:               ${PORT}
+      REDIS_PASSWORD:     ${REDIS_PASSWORD}
+      RABBITMQ_USER:      ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD:  ${RABBITMQ_PASSWORD}
+      LATEST_TTL_SECONDS:  ${LATEST_TTL_SECONDS:-300}
+      MAPPING_TTL_SECONDS: ${MAPPING_TTL_SECONDS:-86400}
+    networks:
+      - katisha-net
+
+networks:
+  katisha-net:
+    external: true
