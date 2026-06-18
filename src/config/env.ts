@@ -20,6 +20,11 @@ const schema = Joi.object({
   // Safety net for the device→trip mapping in case a trip.completed/cancelled event is
   // never delivered — the mapping self-expires so a device can't stream indefinitely.
   MAPPING_TTL_SECONDS: Joi.number().default(86_400),
+
+  // Comma-separated list of allowed CORS origins (browser map/SSE clients).
+  CORS_ORIGINS: Joi.string().default(
+    'https://katisha.online,https://www.katisha.online,https://app.katisha.online',
+  ),
 });
 
 const { error, value } = schema.validate(process.env, { allowUnknown: true });
@@ -40,4 +45,5 @@ export const env = value as {
   RABBITMQ_PORT: number;
   LATEST_TTL_SECONDS: number;
   MAPPING_TTL_SECONDS: number;
+  CORS_ORIGINS: string;
 };

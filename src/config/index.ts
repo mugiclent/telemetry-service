@@ -19,4 +19,8 @@ export const config = {
     latestTtlSeconds: env.LATEST_TTL_SECONDS,
     mappingTtlSeconds: env.MAPPING_TTL_SECONDS,
   },
+
+  cors: {
+    origins: env.CORS_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean),
+  },
 } as const;

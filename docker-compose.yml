@@ -11,6 +11,7 @@ services:
       RABBITMQ_PASSWORD:  ${RABBITMQ_PASSWORD}
       LATEST_TTL_SECONDS:  ${LATEST_TTL_SECONDS:-300}
       MAPPING_TTL_SECONDS: ${MAPPING_TTL_SECONDS:-86400}
+      CORS_ORIGINS:        ${CORS_ORIGINS:-https://katisha.online,https://www.katisha.online,https://app.katisha.online}
     networks:
       - katisha-net
 

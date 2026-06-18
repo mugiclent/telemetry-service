@@ -1,6 +1,8 @@
 import express from 'express';
 import type { Application, Request, Response } from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
+import { config } from '../config/index.js';
 import { getRabbitMQHealth } from './rabbitmq.js';
 import { getRedisHealth } from './redis.js';
 import ingestRouter from '../api/ingest.routes.js';
@@ -14,6 +16,7 @@ export const buildApp = (): Application => {
   app.set('trust proxy', 1);
 
   app.use(helmet());
+  app.use(cors({ origin: config.cors.origins }));
   // The Traccar client posts JSON; OsmAnd mode posts urlencoded/query. Accept both.
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
